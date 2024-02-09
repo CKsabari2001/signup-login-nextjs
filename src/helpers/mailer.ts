@@ -45,7 +45,9 @@ export default async function sendEMail({
         <div>
           <h1>
             Click
-            <a href="${process.env.DOMAIN}/verifyEmail?token=${hashedToken}"}>here</a>
+            <a href="${
+              process.env.DOMAIN
+            }/verifyEmail?token=${encodeURIComponent(hashedToken)}"}>here</a>
             to Verify your email
           </h1>
         </div>`
@@ -53,7 +55,11 @@ export default async function sendEMail({
         <div>
           <h1>
             Click
-            <a href="${process.env.DOMAIN}/forgetPassword/changePassword?token=${hashedToken}"}>here</a>
+            <a href="${
+              process.env.DOMAIN
+            }/forgetPassword/changePassword?token=${encodeURIComponent(
+            hashedToken
+          )}"}>here</a>
             to Reset your password
           </h1>
         </div>
