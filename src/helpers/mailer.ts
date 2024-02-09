@@ -39,13 +39,17 @@ export default async function sendEMail({
     });
 
     // Html Structure for the email based on emailType
+    const encodedLink = encodeURIComponent(
+      `${process.env.DOMAIN}/verifyEmail?token=${hashedToken}`
+    );
+
     const htmlStructure =
       emailType === "VERIFICATION"
         ? ` 
         <div>
           <h1>
             Click
-            <a href="${process.env.DOMAIN}/verifyEmail?token=${hashedToken}"}>here</a>
+            <a href="${encodedLink}"}>here</a>
             to Verify your email
           </h1>
         </div>`
