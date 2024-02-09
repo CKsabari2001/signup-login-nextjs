@@ -39,20 +39,19 @@ export default async function sendEMail({
     });
 
     // Html Structure for the email based on emailType
-    const encodedLink = encodeURIComponent(
-      `${process.env.DOMAIN}/verifyEmail?token=${hashedToken}`
-    );
-
     const htmlStructure =
       emailType === "VERIFICATION"
         ? ` 
         <div>
           <h1>
             Click
-            <a href="${encodedLink}"}>here</a>
+            <a href="${process.env.DOMAIN}/verifyEmail?token=${hashedToken}"}>here</a>
             to Verify your email
           </h1>
-          <a href="${encodedLink}"}>here</a>
+          <br />
+          <br />
+          <h2>Copy your Link Here</h2>
+          <h3>${process.env.DOMAIN}/verifyEmail?token=${hashedToken}</h3>
         </div>`
         : `
         <div>
@@ -61,6 +60,10 @@ export default async function sendEMail({
             <a href="${process.env.DOMAIN}/forgetPassword/changePassword?token=${hashedToken}"}>here</a>
             to Reset your password
           </h1>
+          <br />
+          <br />
+          <h2>Copy your Link Here</h2>
+          <h3>${process.env.DOMAIN}/forgetPassword/changePassword?token=${hashedToken}</h3>
         </div>
         `;
 
