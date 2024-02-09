@@ -52,6 +52,7 @@ export default async function sendEMail({
             <a href="${encodedLink}"}>here</a>
             to Verify your email
           </h1>
+          <a href="${encodedLink}"}>here</a>
         </div>`
         : `
         <div>
