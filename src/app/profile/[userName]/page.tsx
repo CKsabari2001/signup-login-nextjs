@@ -5,10 +5,9 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
-import { CTextField, CBox, CButton } from "../../components/StyledComponents";
+import { CBox, CButton } from "../../components/StyledComponents";
 
 import BgVideo from "../../components/bgVideo";
 interface Params {
@@ -104,15 +103,15 @@ export default function UserPage({ params }: Params) {
     } catch (error: any) {
       const errMsg = error.response.data.error;
 
-      // const isCustomErr = errMsg === "User does not exist";
+      const isCustomErr = errMsg === "User does not exist";
 
-      // if (isCustomErr) {
-      //   console.log(errMsg);
-      //   toast.error(errMsg);
-      // } else {
-      //   console.log(error.message);
-      //   toast.error(error.message);
-      // }
+      if (isCustomErr) {
+        console.log(errMsg);
+        toast.error(errMsg);
+      } else {
+        console.log(error.message);
+        toast.error(error.message);
+      }
 
       console.log(error.message);
     }

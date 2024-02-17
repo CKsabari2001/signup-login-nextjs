@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-import { CTextField, CBox, CButton } from "../components/StyledComponents";
+import { CBox } from "../components/StyledComponents";
 
 import BgVideo from "../components/bgVideo";
 export default function VerifyEmail() {
