@@ -12,6 +12,10 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
+import { CTextField, CBox, CButton } from "../components/StyledComponents";
+
+import BgVideo from "../components/bgVideo";
+
 export default function Login() {
   const router = useRouter();
   const [user, setUser] = useState({
@@ -83,73 +87,62 @@ export default function Login() {
 
   return (
     <>
-      <div>
-        <Toaster />
-      </div>
-      <div className="flex items-center justify-center flex-col h-screen">
-        <h1 className=" text-neutral-700 font-bold text-center text-3xl">
-          {isLoding ? "Loding" : "Login"}
-        </h1>
-        <Box
-          className="flex flex-col justify-center"
-          component="form"
-          sx={{
-            "& > :not(style)": { width: "42ch", margin: "auto", mt: 5 },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            required
-            error={isEmailError}
-            id="standard-basic"
-            label="Email"
-            variant="standard"
-            type="email"
-            value={user.email}
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
-          />
-          <TextField
-            required
-            error={isPsswordError}
-            id="standard-basic"
-            label="Password"
-            variant="standard"
-            type="password"
-            value={user.passWord}
-            onChange={(e) => setUser({ ...user, passWord: e.target.value })}
-          />
-
-          <Link
-            href="/forgetPassword/confirmEmail"
-            className=" text-cyan-600 hover:text-cyan-800"
-          >
-            Forget Password
-          </Link>
-
-          <Stack spacing={2} direction="row" sx={{ alignItems: "center" }}>
-            <Button
+      <div className="main-container">
+        <BgVideo />
+        <div>
+          <Toaster />
+        </div>
+        <div className="flex items-center justify-center flex-col pt-14 md:pt-0 md:min-h-screen">
+          <h1 className="font-bold text-3xl lg:text-5xl mb-10 lg:mb-16 main__title">
+            {isLoding ? "Loding" : "Login"}
+          </h1>
+          <CBox>
+            <CTextField
+              required
+              error={isEmailError}
+              id="outlined-basic"
+              label="Email"
               variant="outlined"
-              onClick={onLogin}
-              sx={{
-                borderColor: "rgba(8, 145, 178, 0.6)",
-                "&:hover": {
-                  borderColor: "rgba(21, 94, 117, 0.8)",
-                },
-                "&:hover span": {
-                  backgroundColor: "rgba(21, 94, 117, 0.1)",
-                },
-              }}
-              className="text-cyan-600 hover:text-cyan-800"
-              disabled={isDisabled || isLoding}
+              type="email"
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
+            />
+            <CTextField
+              required
+              error={isPsswordError}
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              type="password"
+              value={user.passWord}
+              onChange={(e) => setUser({ ...user, passWord: e.target.value })}
+            />
+
+            <Link
+              href="/forgetPassword/confirmEmail"
+              className="main__link font-semibold text-base md:text-lg"
             >
-              {isDisabled ? "No Login" : "Login"}
-            </Button>
-            <Link href="/signup" className=" text-cyan-600 hover:text-cyan-800">
-              Visit Signup Page
+              Forget Password
             </Link>
-          </Stack>
-        </Box>
+
+            <Stack spacing={2} direction="row" sx={{ alignItems: "center" }}>
+              <CButton
+                variant="outlined"
+                onClick={onLogin}
+                className="font-semibold text-base md:text-lg"
+                disabled={isDisabled || isLoding}
+              >
+                {isDisabled ? "No Login" : "Login"}
+              </CButton>
+              <Link
+                href="/signup"
+                className="main__link font-semibold text-base md:text-lg"
+              >
+                Visit Signup Page
+              </Link>
+            </Stack>
+          </CBox>
+        </div>
       </div>
     </>
   );

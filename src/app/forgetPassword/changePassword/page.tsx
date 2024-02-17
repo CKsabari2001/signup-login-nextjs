@@ -11,15 +11,19 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
+import { CTextField, CBox, CButton } from "../../components/StyledComponents";
+
+import BgVideo from "../../components/bgVideo";
+
 interface ResponseEmail {
   email: string;
 }
 
 export default function ChangePassword() {
   const router = useRouter();
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState("ss");
   const [isLoding, setIsLoding] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState(true);
 
   const [email, setEmail] = useState("Cksabari");
   const [passWord, setPassWord] = useState("");
@@ -91,7 +95,7 @@ export default function ChangePassword() {
     // Validate Confirm Password
     if (
       (confirmPassword.length > 0 && !PASSWORD_REGEX.test(confirmPassword)) ||
-      confirmPassword !== passWord
+      (confirmPassword.length > 0 && confirmPassword !== passWord)
     ) {
       setIsCpwError(true);
       isFormInvalid = true;
@@ -130,74 +134,63 @@ export default function ChangePassword() {
 
   return isVerified ? (
     <>
-      <div>
-        <Toaster />
-      </div>
-      <div className="flex items-center justify-center flex-col h-screen">
-        <h1 className=" text-neutral-700 font-bold text-center text-3xl">
-          {isLoding ? "Loding" : "Confirm you'r Email"}
-        </h1>
-        <Box
-          className="flex flex-col justify-center"
-          component="form"
-          sx={{
-            "& > :not(style)": { width: "42ch", margin: "auto", mt: 5 },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            error={isPwError}
-            required
-            id="standard-basic"
-            label="Password"
-            variant="standard"
-            type="password"
-            value={passWord}
-            onChange={(e) => setPassWord(e.target.value)}
-          />
-          <TextField
-            error={isCpwError}
-            required
-            id="standard-basic"
-            label="Confirm Password"
-            variant="standard"
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-
-          <Stack spacing={2} direction="row" sx={{ alignItems: "center" }}>
-            <Button
-              disabled={isLoding || isDisabled}
+      <div className="main-container">
+        <BgVideo />
+        <div>
+          <Toaster />
+        </div>
+        <div className="flex items-center justify-center flex-col pt-14 md:pt-0 md:min-h-screen">
+          <h1 className="font-bold text-3xl lg:text-5xl mb-10 lg:mb-16 main__title">
+            {isLoding ? "Loding" : "Confirm you'r Email"}
+          </h1>
+          <CBox>
+            <CTextField
+              error={isPwError}
+              required
+              id="outlined-basic"
+              label="Password"
               variant="outlined"
-              onClick={onConfirmPassword}
-              sx={{
-                borderColor: "rgba(8, 145, 178, 0.6)",
-                "&:hover": {
-                  borderColor: "rgba(21, 94, 117, 0.8)",
-                },
-                "&:hover span": {
-                  backgroundColor: "rgba(21, 94, 117, 0.1)",
-                },
-              }}
-              className="text-cyan-600 hover:text-cyan-800"
-            >
-              Submit
-            </Button>
-          </Stack>
-        </Box>
+              type="password"
+              value={passWord}
+              onChange={(e) => setPassWord(e.target.value)}
+            />
+            <CTextField
+              error={isCpwError}
+              required
+              id="outlined-basic"
+              label="Confirm Password"
+              variant="outlined"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+
+            <Stack spacing={2} direction="row" sx={{ alignItems: "center" }}>
+              <CButton
+                disabled={isLoding || isDisabled}
+                variant="outlined"
+                onClick={onConfirmPassword}
+                className="font-semibold text-base md:text-lg "
+              >
+                Submit
+              </CButton>
+            </Stack>
+          </CBox>
+        </div>
       </div>
     </>
   ) : (
     <>
-      <div>
-        <Toaster />
-      </div>
-      <div className="flex items-center justify-center flex-col h-screen">
-        <h1 className=" text-neutral-700 font-bold text-center text-3xl">
-          {isLoding ? "Loding" : "Invalid Request"}
-        </h1>
+      <div className="main-container">
+        <BgVideo />
+        <div>
+          <Toaster />
+        </div>
+        <div className="flex items-center justify-center flex-col pt-14 md:pt-0 md:min-h-screen">
+          <h1 className=" font-bold text-3xl lg:text-5xl mb-10 lg:mb-16 main__title">
+            {isLoding ? "Loding" : "Invalid Request"}
+          </h1>
+        </div>
       </div>
     </>
   );

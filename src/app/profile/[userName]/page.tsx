@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
+import { CTextField, CBox, CButton } from "../../components/StyledComponents";
+
+import BgVideo from "../../components/bgVideo";
 interface Params {
   params: {
     userName: string;
@@ -116,78 +119,53 @@ export default function UserPage({ params }: Params) {
   }
   return (
     <>
-      <div>
-        <Toaster />
-      </div>
-      <div className="flex items-center justify-center flex-col h-screen">
-        <h1 className=" text-neutral-700 font-bold text-center text-3xl mb-10">
-          {isLoding ? "Loding" : "User Details"}
-        </h1>
-        <div className="user-data">
-          <h2>User Name - {data.userName}</h2>
-          <h2>Email - {data.email}</h2>
-          <h2>Verified User - {data.isVerified ? "Yes" : "No"}</h2>
+      <div className="main-container">
+        <BgVideo />
+        <div>
+          <Toaster />
         </div>
-        <Stack
-          spacing={2}
-          direction="row"
-          sx={{ alignItems: "center", marginTop: "20px" }}
-        >
-          <Button
-            variant="outlined"
-            onClick={onLogout}
-            sx={{
-              marginTop: "20px",
-              borderColor: "rgba(8, 145, 178, 0.6)",
-              "&:hover": {
-                borderColor: "rgba(21, 94, 117, 0.8)",
-              },
-              "&:hover span": {
-                backgroundColor: "rgba(21, 94, 117, 0.1)",
-              },
-            }}
-            className="text-cyan-600 hover:text-cyan-800"
-            disabled={isLoding}
-          >
-            Logout
-          </Button>
-          <Button
-            variant="outlined"
-            onClick={onVerifyUser}
-            sx={{
-              marginTop: "20px",
-              borderColor: "rgba(8, 145, 178, 0.6)",
-              "&:hover": {
-                borderColor: "rgba(21, 94, 117, 0.8)",
-              },
-              "&:hover span": {
-                backgroundColor: "rgba(21, 94, 117, 0.1)",
-              },
-            }}
-            className="text-cyan-600 hover:text-cyan-800"
-            disabled={isLoding}
-          >
-            Verify User
-          </Button>
-          <Button
-            variant="outlined"
-            onClick={onDeleteUser}
-            sx={{
-              marginTop: "20px",
-              borderColor: "rgba(8, 145, 178, 0.6)",
-              "&:hover": {
-                borderColor: "rgba(21, 94, 117, 0.8)",
-              },
-              "&:hover span": {
-                backgroundColor: "rgba(21, 94, 117, 0.1)",
-              },
-            }}
-            className="text-cyan-600 hover:text-cyan-800"
-            disabled={isLoding}
-          >
-            Delete User
-          </Button>
-        </Stack>
+        <div className="flex items-center justify-center flex-col pt-14 md:pt-0 md:min-h-screen">
+          <h1 className=" font-bold text-3xl lg:text-5xl mb-10 lg:mb-16 main__title">
+            {isLoding ? "Loding" : "User Details"}
+          </h1>
+          <CBox>
+            <div className="user-data">
+              <h2>User Name - {data.userName}</h2>
+              <h2>Email - {data.email}</h2>
+              <h2>Verified User - {data.isVerified ? "Yes" : "No"}</h2>
+            </div>
+            <Stack
+              spacing={2}
+              direction="row"
+              sx={{ alignItems: "center", marginTop: "20px" }}
+            >
+              <CButton
+                variant="outlined"
+                onClick={onLogout}
+                className="font-semibold text-base md:text-lg"
+                disabled={isLoding}
+              >
+                Logout
+              </CButton>
+              <CButton
+                variant="outlined"
+                onClick={onVerifyUser}
+                className="font-semibold text-base md:text-lg"
+                disabled={isLoding}
+              >
+                Verify User
+              </CButton>
+              <CButton
+                variant="outlined"
+                onClick={onDeleteUser}
+                className="font-semibold text-base md:text-lg"
+                disabled={isLoding}
+              >
+                Delete User
+              </CButton>
+            </Stack>
+          </CBox>
+        </div>
       </div>
     </>
   );

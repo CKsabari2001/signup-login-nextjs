@@ -20,11 +20,11 @@ export function validateChangePasswordToken(request: NextRequest) {
 }
 
 export function middleware(request: NextRequest) {
-  if (!validateChangePasswordToken(request)) {
-    return NextResponse.redirect(
-      new URL("/forgetPassword/confirmEmail", request.url)
-    );
-  }
+  // if (!validateChangePasswordToken(request)) {
+  //   return NextResponse.redirect(
+  //     new URL("/forgetPassword/confirmEmail", request.url)
+  //   );
+  // }
 
   const path = request.nextUrl.pathname;
 
@@ -34,19 +34,19 @@ export function middleware(request: NextRequest) {
     path === "/forgetPassword/confirmEmail" ||
     path === "/forgetPassword/changePassword";
 
-  const token = request.cookies.get("tokens")?.value || "";
+  // const token = request.cookies.get("tokens")?.value || "";
 
-  if (isPublicPath && token) {
-    return NextResponse.redirect(new URL("/profile", request.url));
-  }
+  // if (isPublicPath && token) {
+  //   return NextResponse.redirect(new URL("/profile", request.url));
+  // }
 
-  if (path === "/") {
-    return NextResponse.redirect(new URL("/profile", request.url));
-  }
+  // if (path === "/") {
+  //   return NextResponse.redirect(new URL("/profile", request.url));
+  // }
 
-  if (!isPublicPath && !token) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // if (!isPublicPath && !token) {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
 }
 
 export const config = {

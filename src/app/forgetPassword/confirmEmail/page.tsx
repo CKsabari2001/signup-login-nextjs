@@ -12,50 +12,32 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-// useEffect(() => {
-//   const { email, passWord, userName } = user;
-//   const USERNAME_REGEX = /^(?![_-])[a-zA-Z0-9_-]{4,}(?<![_-])$/;
-//   const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-//   const PASSWORD_REGEX =
-//     /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&. '"_-])[A-Za-z\d@$!%*?&. '"_-]{8,}$/;
+import { CTextField, CBox, CButton } from "../../components/StyledComponents";
 
-//   let isFormInvalid = false;
-
-//   // Validate User Name
-//   if (userName.length > 0 && !USERNAME_REGEX.test(userName)) {
-//     setuserNameError(true);
-//     isFormInvalid = true;
-//   } else {
-//     setuserNameError(false);
-//   }
-
-//   // Validate Email
-//   if (email.length > 0 && !EMAIL_REGEX.test(email)) {
-//     setIsEmailError(true);
-//     isFormInvalid = true;
-//   } else {
-//     setIsEmailError(false);
-//   }
-
-//   // Validate Password
-//   if (
-//     passWord.length > 0 &&
-//     (!PASSWORD_REGEX.test(passWord) || email === passWord)
-//   ) {
-//     setIsPsswordError(true);
-//     isFormInvalid = true;
-//   } else {
-//     setIsPsswordError(false);
-//   }
-
-//   setIsDisabled(isFormInvalid || !email || !passWord || !userName);
-// }, [user]);
+import BgVideo from "../../components/bgVideo";
 
 export default function ConfirmEmail() {
   const [email, setEmail] = useState("");
   const [isLoding, setIsLoding] = useState(false);
 
-  const [isEmailSend, setIsEmailSend] = useState(false);
+  const [isEmailError, setIsEmailError] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  useEffect(() => {
+    const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    let isFormInvalid = false;
+
+    // Validate Email
+    if (email.length > 0 && !EMAIL_REGEX.test(email)) {
+      setIsEmailError(true);
+      isFormInvalid = true;
+    } else {
+      setIsEmailError(false);
+    }
+
+    setIsDisabled(isFormInvalid || !email);
+  }, [email]);
 
   async function onConfirmEmail() {
     setIsLoding(true);
@@ -69,8 +51,6 @@ export default function ConfirmEmail() {
       toast.success(response.data.message);
 
       setEmail("");
-
-      setIsEmailSend(true);
     } catch (error: any) {
       const errMsg = error.response.data.error;
 
@@ -90,54 +70,44 @@ export default function ConfirmEmail() {
 
   return (
     <>
-      <div>
-        <Toaster />
-      </div>
-      <div className="flex items-center justify-center flex-col h-screen">
-        <h1 className=" text-neutral-700 font-bold text-center text-3xl">
-          {isLoding ? "Loding" : "Confirm you'r Email"}
-        </h1>
-        <Box
-          className="flex flex-col justify-center"
-          component="form"
-          sx={{
-            "& > :not(style)": { width: "42ch", margin: "auto", mt: 5 },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            required
-            id="standard-basic"
-            label="Email"
-            variant="standard"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Stack spacing={2} direction="row" sx={{ alignItems: "center" }}>
-            <Button
-              disabled={isLoding}
+      <div className="main-container">
+        <BgVideo />
+        <div>
+          <Toaster />
+        </div>
+        <div className="flex items-center justify-center flex-col pt-14 md:pt-0 md:min-h-screen">
+          <h1 className="font-bold text-3xl lg:text-5xl mb-10 lg:mb-16 main__title">
+            {isLoding ? "Loding" : "Confirm you'r Email"}
+          </h1>
+          <CBox>
+            <CTextField
+              required
+              error={isEmailError}
+              id="outlined-basic"
+              label="Email"
               variant="outlined"
-              onClick={onConfirmEmail}
-              sx={{
-                borderColor: "rgba(8, 145, 178, 0.6)",
-                "&:hover": {
-                  borderColor: "rgba(21, 94, 117, 0.8)",
-                },
-                "&:hover span": {
-                  backgroundColor: "rgba(21, 94, 117, 0.1)",
-                },
-              }}
-              className="text-cyan-600 hover:text-cyan-800"
-            >
-              Submit
-            </Button>
-            <Link href="/login" className=" text-cyan-600 hover:text-cyan-800">
-              Visit Login Page
-            </Link>
-          </Stack>
-        </Box>
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Stack spacing={2} direction="row" sx={{ alignItems: "center" }}>
+              <CButton
+                disabled={isLoding || isDisabled}
+                variant="outlined"
+                onClick={onConfirmEmail}
+                className="font-semibold text-base md:text-lg"
+              >
+                Submit
+              </CButton>
+              <Link
+                href="/login"
+                className="main__link font-semibold text-base md:text-lg"
+              >
+                Visit Login Page
+              </Link>
+            </Stack>
+          </CBox>
+        </div>
       </div>
     </>
   );

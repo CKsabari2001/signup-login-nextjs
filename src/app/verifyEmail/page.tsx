@@ -5,6 +5,9 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
+import { CTextField, CBox, CButton } from "../components/StyledComponents";
+
+import BgVideo from "../components/bgVideo";
 export default function VerifyEmail() {
   const router = useRouter();
 
@@ -46,22 +49,27 @@ export default function VerifyEmail() {
 
   return (
     <>
-      <div className="flex items-center justify-center flex-col h-screen">
-        {isLoding ? (
-          <h1 className=" text-neutral-700 font-bold text-center text-3xl">
-            Loading
-          </h1>
-        ) : (
-          <>
-            <h1 className=" text-neutral-700 font-bold text-center text-3xl">
-              {(isVerified && "Email verification successfully") ||
-                (error && "Email Verification failed")}
+      <div className="main-container">
+        <BgVideo />
+        <div className="flex items-center justify-center flex-col pt-14 md:pt-0 md:min-h-screen">
+          {isLoding ? (
+            <h1 className="font-bold text-3xl lg:text-5xl mb-10 lg:mb-16 main__title">
+              Loading
             </h1>
-            <h2 className="mt-2 text-xl text-neutral-700 font-medium">
-              {error ? "No token" : token}
-            </h2>
-          </>
-        )}
+          ) : (
+            <>
+              <h1 className="font-bold text-3xl lg:text-5xl mb-10 lg:mb-16 main__title">
+                {(isVerified && "Email verification successfully") ||
+                  (error && "Email Verification failed")}
+              </h1>
+              <CBox>
+                <h2 className="mb-10 lg:mb-16 mt-2 px-2 text-wrap">
+                  {error ? "No token" : "Token - " + token}
+                </h2>
+              </CBox>
+            </>
+          )}
+        </div>
       </div>
     </>
   );
