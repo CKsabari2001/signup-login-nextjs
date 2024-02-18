@@ -185,7 +185,7 @@ export default function ChangePassword() {
         </div>
         <div className="flex items-center justify-center flex-col pt-14 md:pt-0 md:min-h-screen">
           <h1 className=" font-bold text-3xl lg:text-5xl mb-10 lg:mb-16 main__title">
-            {isLoding ? "Loding" : "Invalid Request"}
+            {isLoding ? "Loading" : "Invalid Request"}
           </h1>
         </div>
       </div>
