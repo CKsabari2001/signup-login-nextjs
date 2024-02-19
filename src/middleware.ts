@@ -11,7 +11,7 @@ export function validateChangePasswordToken(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const token = searchParams.get("token");
 
-  // if no user return false to redirect to login page
+  // if token is not there
   if (!token) {
     return false;
   }
@@ -20,6 +20,7 @@ export function validateChangePasswordToken(request: NextRequest) {
 }
 
 export function middleware(request: NextRequest) {
+  // if token is not there return to the confirm email page
   if (!validateChangePasswordToken(request)) {
     return NextResponse.redirect(
       new URL("/forgetPassword/confirmEmail", request.url)

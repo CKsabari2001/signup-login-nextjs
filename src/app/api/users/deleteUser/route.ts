@@ -11,6 +11,7 @@ export async function DELETE(request: NextRequest) {
     // find if user if there
     const userFound = await User.findOne({ _id: user._id });
 
+    // If No user
     if (!userFound) {
       return NextResponse.json(
         { error: "User does not exist" },

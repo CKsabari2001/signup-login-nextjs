@@ -107,7 +107,7 @@ export default function ChangePassword() {
     try {
       const response = await axios.post(
         "/api/users/forgetPassword/confirmPassword",
-        { email, passWord, confirmPassword }
+        { email, passWord }
       );
 
       toast.success(response.data.message);
@@ -116,16 +116,8 @@ export default function ChangePassword() {
       // Redirect to Login page
       router.push("/login");
     } catch (error: any) {
-      const errMsg = error.response.data.error;
-      const isCustomError = errMsg === "User is not found";
-
-      if (isCustomError) {
-        console.log("Confirm password failed", errMsg);
-        toast.error(errMsg);
-      } else {
-        console.log("Confirm password failed", error.message);
-        toast.error(error.message);
-      }
+      console.log("Confirm password failed", error.message);
+      toast.error(error.message);
     }
   }
 

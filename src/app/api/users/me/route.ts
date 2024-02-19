@@ -7,7 +7,7 @@ connect();
 
 export async function GET(request: NextRequest) {
   try {
-    const userId = await getDataFromToken(request);
+    const userId = getDataFromToken(request);
 
     const user = await User.findById(userId).select("-passWord");
 

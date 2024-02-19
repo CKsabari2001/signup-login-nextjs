@@ -33,8 +33,8 @@ export default function UserPage({ params }: Params) {
   useEffect(() => {
     async function getData() {
       try {
-        const responce = await axios.get("/api/users/me");
-        const userData = responce.data.data;
+        const response = await axios.get("/api/users/me");
+        const userData = response.data.data;
         setData(userData);
       } catch (error: any) {
         console.log("Getting user data failed", error.message);
@@ -49,9 +49,9 @@ export default function UserPage({ params }: Params) {
     setIsLoding(true);
 
     try {
-      const responce = await axios.get("/api/users/logout");
+      const response = await axios.get("/api/users/logout");
 
-      const logOutMsg = responce.data.message;
+      const logOutMsg = response.data.message;
 
       toast.success(logOutMsg);
 

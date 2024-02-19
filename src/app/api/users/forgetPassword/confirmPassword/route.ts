@@ -15,17 +15,12 @@ export async function POST(request: NextRequest) {
     const hashedPassWord = await bcryptjs.hash(passWord, salt);
 
     // find user using email address and update password field
-    const user = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { email },
       {
         passWord: hashedPassWord,
       }
     );
-
-    // If user is not there
-    if (!user) {
-      return NextResponse.json({ error: "User is not found" }, { status: 400 });
-    }
 
     return NextResponse.json({
       message: "Password reset successful",

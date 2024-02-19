@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
     const reqBody = await request.json();
     const { token } = reqBody;
 
-    // finder user by verification token and check if token is valid (2 conditions)
+    // find user by verification token and check if token is valid (2 conditions)
     const user = await User.findOne({
       forgotPasswordToken: token,
       forgotPasswordExpiry: { $gt: Date.now() },

@@ -11,8 +11,10 @@ export default function ProfilePage() {
   useEffect(() => {
     async function getData() {
       try {
-        const responce = await axios.get("/api/users/me");
-        router.push(`/profile/${responce.data.data.userName}`);
+        const response = await axios.get("/api/users/me");
+
+        const userName = response.data.data.userName;
+        router.push(`/profile/${userName}`);
       } catch (error: any) {
         console.log("Getting user data failed", error.message);
         toast.error(error.message);

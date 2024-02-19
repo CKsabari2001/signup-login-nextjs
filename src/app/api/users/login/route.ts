@@ -14,6 +14,8 @@ export async function POST(request: NextRequest) {
 
     // Check if user already exists
     const user = await User.findOne({ email });
+
+    // if no user found
     if (!user) {
       return NextResponse.json(
         { error: "User does not exist" },
@@ -23,6 +25,8 @@ export async function POST(request: NextRequest) {
 
     // check if password is correct
     const isPassWordCorrect = await bcryptjs.compare(passWord, user.passWord);
+
+    // if Password Wrong
     if (!isPassWordCorrect) {
       return NextResponse.json(
         { error: "Password is incorrect" },
@@ -46,6 +50,7 @@ export async function POST(request: NextRequest) {
       message: "Login was successful",
       success: true,
     });
+
     // Send the token to the User Cookie
     response.cookies.set("tokens", token, {
       httpOnly: true,

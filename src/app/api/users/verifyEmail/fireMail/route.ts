@@ -27,8 +27,6 @@ export async function POST(request: NextRequest) {
       userId: user._id,
     });
 
-    console.log(user);
-
     return NextResponse.json({
       message: "Verification Email sent successfully",
       success: true,

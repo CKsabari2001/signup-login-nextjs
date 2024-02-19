@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import User from "@/models/userModel";
-import bcrypt from "bcryptjs";
+import bcryptjs from "bcryptjs";
 
 interface SendEmail {
   email: string;
@@ -14,7 +14,8 @@ export default async function sendEMail({
 }: SendEmail) {
   try {
     // Creating a Hash of the user ID
-    const hashedToken = await bcrypt.hash(userId.toString(), 10);
+    const salt = await bcryptjs.genSalt(10);
+    const hashedToken = await bcryptjs.hash(userId.toString(), salt);
 
     if (emailType === "VERIFICATION") {
       await User.findByIdAndUpdate(userId, {
