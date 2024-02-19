@@ -71,19 +71,13 @@ Now you're all set to run the application with the updated environment variables
   git clone https://github.com/CKsabari2001/signup-login-nextjs
 ```
 
-### 2. Navigate to the project directory
-
-```bash
-  cd signup-login-nextjs
-```
-
-### 3. Install dependencies
+### 2. Install dependencies
 
 ```bash
   npm install
 ```
 
-### 4. Start the development server
+### 3. Start the development server
 
 ```bash
   npm run dev
