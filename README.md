@@ -28,8 +28,8 @@ This project was developed to demonstrate a robust authentication system using N
 
 ## Tech Stack
 
-- **Frontend**: Next.js, React.js, Tailwind CSS, Material-UI (MUI)
-- **Backend**: Node.js, MongoDB, Mongoose
+- **Frontend**: Next.js, React.js, Tailwind CSS, Material-UI (MUI), TypeScript
+- **Backend**: Node.js, MongoDB, Mongoose 
 - **Authentication**: jsonwebtoken (JWT), bcryptjs
 - **Other**: Axios, nodemailer, Mariltrap
 
