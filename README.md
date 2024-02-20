@@ -41,7 +41,7 @@ This project was developed to demonstrate a robust authentication system using N
 
 ## Demo
 
-Check out the live demo of the Dice Harmony - https://cksabari2001-signup-login-nextjs.vercel.app
+Check out the live demo of the Full Stack Next.js Login and Signup Form - https://cksabari2001-signup-login-nextjs.vercel.app
 
 ## Configuration
 
