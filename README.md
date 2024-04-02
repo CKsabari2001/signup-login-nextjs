@@ -6,6 +6,10 @@ Welcome to the Full Stack Next.js Login and Signup Form project repository! This
 
 This project was developed to demonstrate a robust authentication system using Next.js, incorporating various features essential for user management and security.
 
+## Demo
+
+Check out the live demo of the Full Stack Next.js Login and Signup Form - https://cksabari2001-signup-login-nextjs.vercel.app
+
 ## Features
 
 ### Frontend:
@@ -39,9 +43,7 @@ This project was developed to demonstrate a robust authentication system using N
 
 ![306052780-d794faba-8777-438c-8334-0b15f78417bb](https://github.com/CKsabari2001/signup-login-nextjs/assets/110533554/05319016-7917-4933-9817-7986c21b962e)
 
-## Demo
 
-Check out the live demo of the Full Stack Next.js Login and Signup Form - https://cksabari2001-signup-login-nextjs.vercel.app
 
 ## Configuration
 
